@@ -3,9 +3,11 @@ package io.github.wemersonwalcley.CadastroDeUsuarios.services;
 import io.github.wemersonwalcley.CadastroDeUsuarios.DTOS.AccountDTO;
 import io.github.wemersonwalcley.CadastroDeUsuarios.entities.Account;
 import io.github.wemersonwalcley.CadastroDeUsuarios.repositories.AccountRepository;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -27,13 +29,17 @@ public class AccountService {
         return account.map(AccountDTO::new);
     }
 
-    public ResponseEntity delete(Long id){
+    public ResponseEntity<?> delete(Long id){
         Optional<Account> optionalAccount = accountRepository.findById(id);
-        if(optionalAccount.isEmpty()){
-            return ResponseEntity.notFound().build();
+        try {
+            accountRepository.delete(optionalAccount.get());
+            return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso");
         }
-        accountRepository.delete(optionalAccount.get());
-        return ResponseEntity.noContent().build();
+        catch (RuntimeException e){
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+        }
+
     }
 
     public Account save(Account account){

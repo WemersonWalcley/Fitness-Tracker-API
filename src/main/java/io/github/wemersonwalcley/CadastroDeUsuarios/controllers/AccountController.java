@@ -66,7 +66,7 @@ public class AccountController {
 
     @ApiOperation(value = "delete")
     @DeleteMapping(path = "/{id}")
-    public void delete(@PathVariable Long id) {
-        accountService.delete(id);
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        return accountService.delete(id);
     }
 }
