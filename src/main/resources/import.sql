@@ -1,8 +1,8 @@
-INSERT INTO tb_account (username, password) VALUES ('Wemerson', '123456');
-INSERT INTO tb_account (username, password) VALUES ('Ricardo', '123456');
-INSERT INTO tb_account (username, password) VALUES ('Paulo', '123456');
-INSERT INTO tb_account (username, password) VALUES ('Hermes', '123456');
-INSERT INTO tb_account (username, password) VALUES ('Wallas', '123456');
-INSERT INTO tb_account (username, password) VALUES ('Ivison', '123456');
-INSERT INTO tb_account (username, password) VALUES ('Danillo', '123456');
-INSERT INTO tb_account (username, password) VALUES ('Marcelo', '123456');
+--INSERT INTO tb_account (id, username, password) VALUES (1, 'Wemerson', '123456');
+--INSERT INTO tb_account (id, username, password) VALUES (2, 'Ricardo', '123456');
+--INSERT INTO tb_account (id, username, password) VALUES (3, 'Paulo', '123456');
+--INSERT INTO tb_account (id, username, password) VALUES (4, 'Hermes', '123456');
+--INSERT INTO tb_account (id, username, password) VALUES (5, 'Wallas', '123456');
+--INSERT INTO tb_account (id, username, password) VALUES (6, 'Ivison', '123456');
+--INSERT INTO tb_account (id, username, password) VALUES (7, 'Danillo', '123456');
+--INSERT INTO tb_account (id, username, password) VALUES (8, 'Marcelo', '123456');

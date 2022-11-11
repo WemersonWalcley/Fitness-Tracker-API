@@ -45,28 +45,26 @@ public class AccountController {
     @ApiOperation(value = "findById")
     @GetMapping(value = "/{id}")
     public ResponseEntity<AccountDTO> findById(@PathVariable Long id) {
-        Optional<AccountDTO> accountDTO = accountService.findById(id);
-        return accountDTO.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return accountService.findById(id);
     }
 
     @ApiOperation(value = "save")
     @PostMapping
     public ResponseEntity<Account> save(@RequestBody Account account) {
-        Account savedAccount = accountService.save(account);
-        return ResponseEntity.ok(savedAccount);
+        return accountService.save(account);
+//        return ResponseEntity.ok(savedAccount);
 
     }
 
     @ApiOperation(value = "update")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Account> update(@PathVariable Long id, @RequestBody Account account) {
-        Account updatedAccount = accountService.update(id, account);
-        return ResponseEntity.ok(updatedAccount);
+        return accountService.update(id, account);
     }
 
     @ApiOperation(value = "delete")
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
+    public ResponseEntity<String> delete(@PathVariable Long id) {
         return accountService.delete(id);
     }
 }
