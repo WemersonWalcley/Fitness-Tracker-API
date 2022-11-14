@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 @Getter
@@ -20,9 +21,11 @@ public class Account {
     private Long id;
 
     @Column
+    @NotEmpty(message = "Campo usuário é obrigatório.")
     private String username;
 
     @Column
+    @NotEmpty(message = "Campo senha é obrigatório.")
     private String password;
 
     @Override
