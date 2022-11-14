@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
@@ -40,6 +41,7 @@ public class AccountServiceImpl implements AccountService{
         return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso");
     }
 
+    @Transactional
     public ResponseEntity<Account> save(Account account) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(accountRepository.save(account));
@@ -49,6 +51,7 @@ public class AccountServiceImpl implements AccountService{
         }
     }
 
+    @Transactional
     public ResponseEntity<Account> update(Long id, Account account) {
         Account accountUpdated = accountRepository
                 .findById(id)
