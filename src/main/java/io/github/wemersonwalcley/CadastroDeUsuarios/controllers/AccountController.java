@@ -2,22 +2,17 @@ package io.github.wemersonwalcley.CadastroDeUsuarios.controllers;
 
 import io.github.wemersonwalcley.CadastroDeUsuarios.DTOS.AccountDTO;
 import io.github.wemersonwalcley.CadastroDeUsuarios.entities.Account;
-import io.github.wemersonwalcley.CadastroDeUsuarios.services.AccountService;
+import io.github.wemersonwalcley.CadastroDeUsuarios.services.account.AccountServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
-
-import java.util.Optional;
 
 @Api(tags = "Accounts")
 @RestController
@@ -25,7 +20,7 @@ import java.util.Optional;
 public class AccountController {
 
     @Autowired
-    private AccountService accountService;
+    private AccountServiceImpl accountServiceImpl;
 
     @ApiOperation(value = "findAll")
     @GetMapping
@@ -39,32 +34,30 @@ public class AccountController {
             "Ignored because swagger ui shows the wrong params, " +
                     "instead they are explained in the implicit params"
     ) Pageable pageable) {
-        return accountService.findAll(pageable);
+        return accountServiceImpl.findAll(pageable);
     }
 
     @ApiOperation(value = "findById")
     @GetMapping(value = "/{id}")
     public ResponseEntity<AccountDTO> findById(@PathVariable Long id) {
-        return accountService.findById(id);
+        return accountServiceImpl.findById(id);
     }
 
     @ApiOperation(value = "save")
     @PostMapping
     public ResponseEntity<Account> save(@RequestBody Account account) {
-        return accountService.save(account);
-//        return ResponseEntity.ok(savedAccount);
-
+        return accountServiceImpl.save(account);
     }
 
     @ApiOperation(value = "update")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Account> update(@PathVariable Long id, @RequestBody Account account) {
-        return accountService.update(id, account);
+        return accountServiceImpl.update(id, account);
     }
 
     @ApiOperation(value = "delete")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
-        return accountService.delete(id);
+        return accountServiceImpl.delete(id);
     }
 }

@@ -1,11 +1,9 @@
-package io.github.wemersonwalcley.CadastroDeUsuarios.services;
+package io.github.wemersonwalcley.CadastroDeUsuarios.services.account;
 
 import io.github.wemersonwalcley.CadastroDeUsuarios.DTOS.AccountDTO;
 import io.github.wemersonwalcley.CadastroDeUsuarios.entities.Account;
 import io.github.wemersonwalcley.CadastroDeUsuarios.repositories.AccountRepository;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -16,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 @Service
-public class AccountService {
+public class AccountServiceImpl implements AccountService{
 
     @Autowired
     private AccountRepository accountRepository;
@@ -44,7 +42,7 @@ public class AccountService {
 
     public ResponseEntity<Account> save(Account account) {
         try {
-            return ResponseEntity.ok(accountRepository.save(account));
+            return ResponseEntity.status(HttpStatus.CREATED).body(accountRepository.save(account));
         } catch (ResponseStatusException e) {
             e.printStackTrace();
             throw new ResponseStatusException(e.getStatus(), e.getMessage());
@@ -65,3 +63,4 @@ public class AccountService {
         }
     }
 }
+
