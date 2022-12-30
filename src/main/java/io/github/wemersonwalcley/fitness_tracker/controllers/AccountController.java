@@ -1,8 +1,10 @@
-package io.github.wemersonwalcley.CadastroDeUsuarios.controllers;
+package io.github.wemersonwalcley.fitness_tracker.controllers;
 
-import io.github.wemersonwalcley.CadastroDeUsuarios.DTOS.AccountDTO;
-import io.github.wemersonwalcley.CadastroDeUsuarios.entities.Account;
-import io.github.wemersonwalcley.CadastroDeUsuarios.services.account.AccountServiceImpl;
+import io.github.wemersonwalcley.fitness_tracker.DTOS.AccountDTO;
+import io.github.wemersonwalcley.fitness_tracker.DTOS.CredentialsDTO;
+import io.github.wemersonwalcley.fitness_tracker.DTOS.TokenDTO;
+import io.github.wemersonwalcley.fitness_tracker.entities.Account;
+import io.github.wemersonwalcley.fitness_tracker.services.account.AccountServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -11,8 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import springfox.documentation.annotations.ApiIgnore;
+
+import javax.validation.Valid;
 
 @Api(tags = "Accounts")
 @RestController
@@ -45,7 +52,7 @@ public class AccountController {
 
     @ApiOperation(value = "save")
     @PostMapping
-    public ResponseEntity<Account> save(@RequestBody Account account) {
+    public ResponseEntity<Account> save(@RequestBody @Valid Account account) {
         return accountServiceImpl.save(account);
     }
 
@@ -59,5 +66,11 @@ public class AccountController {
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         return accountServiceImpl.delete(id);
+    }
+
+    @PostMapping(path = "/authenticate")
+    public ResponseEntity<ResponseEntity<TokenDTO>> authenticate(@Validated @RequestBody CredentialsDTO dto) {
+        ResponseEntity<TokenDTO> token = this.accountServiceImpl.authenticate(dto);
+        return ResponseEntity.ok(token);
     }
 }

@@ -1,4 +1,4 @@
-package io.github.wemersonwalcley.CadastroDeUsuarios;
+package io.github.wemersonwalcley.fitness_tracker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

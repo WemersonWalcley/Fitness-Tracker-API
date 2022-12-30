@@ -1,7 +1,7 @@
-package io.github.wemersonwalcley.CadastroDeUsuarios.DTOS;
+package io.github.wemersonwalcley.fitness_tracker.DTOS;
 
 
-import io.github.wemersonwalcley.CadastroDeUsuarios.entities.Account;
+import io.github.wemersonwalcley.fitness_tracker.entities.Account;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class AccountDTO {
     private Long id;
-    private String username;
+    private String email;
 
     public AccountDTO(Account account){
-        this.username = account.getUsername();
+        this.email = account.getEmail();
         this.id = account.getId();
     }
 }
