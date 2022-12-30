@@ -1,8 +1,6 @@
 package io.github.wemersonwalcley.fitness_tracker.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import io.github.wemersonwalcley.fitness_tracker.DTOS.AccountDTO;
-import io.github.wemersonwalcley.fitness_tracker.DTOS.CredentialsDTO;
 import io.github.wemersonwalcley.fitness_tracker.enumeration.AccessLevelEnum;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -13,9 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -34,12 +31,19 @@ public class Account implements UserDetails, GrantedAuthority, Serializable {
     private Long id;
 
     @Column
-    @NotEmpty(message = "Campo usuário é obrigatório.")
+    @NotEmpty(message = "Campo nome é obrigatório.")
+    private String name;
+
+    @Column
+    @NotEmpty(message = "Campo e-mail é obrigatório.")
     private String email;
 
     @Column(length = 200)
     @NotEmpty(message = "Campo senha é obrigatório.")
     private String password;
+
+    @Column
+    private LocalDate birthday;
 
     @Enumerated(EnumType.STRING)
     @JsonBackReference
