@@ -10,12 +10,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 @NoArgsConstructor
 @EqualsAndHashCode
 @Data
-public class CredentialsDTO {
+public class CredentialDTO {
 
-    private String email;
+    private String username;
     private String password;
 
     public UsernamePasswordAuthenticationToken toUsernamePasswordAuthenticationToken(){
-        return new UsernamePasswordAuthenticationToken(email, password);
+        return new UsernamePasswordAuthenticationToken(username, password);
     }
 }

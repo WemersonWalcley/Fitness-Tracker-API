@@ -1,7 +1,7 @@
 package io.github.wemersonwalcley.fitness_tracker.services.user;
 
-import io.github.wemersonwalcley.fitness_tracker.entities.Account;
-import io.github.wemersonwalcley.fitness_tracker.repositories.AccountRepository;
+import io.github.wemersonwalcley.fitness_tracker.entities.Credential;
+import io.github.wemersonwalcley.fitness_tracker.repositories.LoginRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,11 +14,11 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserDetailServiceImpl implements UserDetailsService {
 
-    private AccountRepository repository;
+    private LoginRepository repository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Account> optional = repository.findByEmail(username);
+        Optional<Credential> optional = repository.findByUsername(username);
         if(optional.isPresent()){
             return optional.get();
         }

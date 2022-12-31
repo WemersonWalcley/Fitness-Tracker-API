@@ -20,7 +20,6 @@ public class AccountDTO {
 
     public AccountDTO(Account account){
         this.email = account.getEmail();
-        this.id = account.getId();
         this.birthday = account.getBirthday();
         this.name = account.getName();
     }

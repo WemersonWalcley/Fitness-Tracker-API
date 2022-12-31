@@ -1,7 +1,7 @@
 package io.github.wemersonwalcley.fitness_tracker.security;
 
-import io.github.wemersonwalcley.fitness_tracker.entities.Account;
-import io.github.wemersonwalcley.fitness_tracker.repositories.AccountRepository;
+import io.github.wemersonwalcley.fitness_tracker.entities.Credential;
+import io.github.wemersonwalcley.fitness_tracker.repositories.LoginRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -15,9 +15,9 @@ import java.io.IOException;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private JwtEncoder jwtEncoder;
-    private AccountRepository repository;
+    private LoginRepository repository;
 
-    public JwtAuthFilter(JwtEncoder jwtEncoder, AccountRepository repository) {
+    public JwtAuthFilter(JwtEncoder jwtEncoder, LoginRepository repository) {
         this.jwtEncoder = jwtEncoder;
         this.repository = repository;
     }
@@ -43,8 +43,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private void authenticateAccount(String token){
         Long accountId = jwtEncoder.getAccountId(token);
-        Account account = repository.findById(accountId).get();
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(account, null, account.getAuthorities());
+        Credential credential = repository.findById(accountId).get();
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(credential, null, credential.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
     }
 }

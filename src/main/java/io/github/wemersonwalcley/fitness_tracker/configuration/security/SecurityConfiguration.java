@@ -28,8 +28,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private JwtEncoder jwtEncoder;
 
-    private AccountRepository repository;
-
     //Gera um hashCode a partir do password. Sempre gera um hash diferente.
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -45,22 +43,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     //Definindo autorizações e configurando roles
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and()
-                .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/accounts/authenticate").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/accounts").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/accounts").permitAll()
-                .antMatchers("/v2/api-docs",
-                        "/swagger-resources",
-                        "/swagger-resources/**",
-                        "/configuration/ui",
-                        "/configuration/security",
-                        "/swagger-ui.html",
-                        "/webjars/**").permitAll()
-                .anyRequest().authenticated()
-                .and().csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().addFilterBefore(new JwtAuthFilter(jwtEncoder, repository), UsernamePasswordAuthenticationFilter.class);
+        http.authorizeRequests().antMatchers("/").permitAll().and()
+                .authorizeRequests().antMatchers("/console/**").permitAll();
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
+
+//        http.cors().and()
+//                .authorizeRequests()
+//                .antMatchers(HttpMethod.POST, "/api/accounts/authenticate").permitAll()
+//                .antMatchers(HttpMethod.POST, "/api/accounts").permitAll()
+//                .antMatchers(HttpMethod.GET, "/api/accounts").permitAll()
+//                .antMatchers("/console/**").permitAll()
+//                .antMatchers("/v2/api-docs",
+//                        "/swagger-resources",
+//                        "/swagger-resources/**",
+//                        "/configuration/ui",
+//                        "/configuration/security",
+//                        "/swagger-ui.html",
+//                        "/webjars/**").permitAll()
+//                .anyRequest().authenticated()
+//                .and().csrf().disable()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and().addFilterBefore(new JwtAuthFilter(jwtEncoder, repository), UsernamePasswordAuthenticationFilter.class);
 
     }
 

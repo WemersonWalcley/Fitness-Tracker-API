@@ -1,6 +1,6 @@
 package io.github.wemersonwalcley.fitness_tracker.security;
 
-import io.github.wemersonwalcley.fitness_tracker.entities.Account;
+import io.github.wemersonwalcley.fitness_tracker.entities.Credential;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -12,7 +12,6 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.Optional;
 
 @Service
 public class JwtEncoder {
@@ -23,14 +22,14 @@ public class JwtEncoder {
     @Value("${security.jwt.signature}")
     private String signatureKey;
 
-    public String generateToken(Account account) {
+    public String generateToken(Credential credential) {
         long expString = Long.parseLong(expiration);
         LocalDateTime dateHourExpiration = LocalDateTime.now().plusMinutes(expString);
         Instant instant = dateHourExpiration.atZone(ZoneId.systemDefault()).toInstant();
         Date date = Date.from(instant);
         return Jwts
                 .builder()
-                .setSubject(account.getEmail())
+                .setSubject(credential.getUsername())
                 .setExpiration(date)
                 .signWith(SignatureAlgorithm.HS256, signatureKey)
                 .compact();
