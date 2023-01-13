@@ -19,8 +19,8 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Transactional
     public ResponseEntity<Customer> save(Customer customer) {
-        String passCrypt = passwordEncoder.encode(customer.getCredential().getPassword());
-        customer.getCredential().setPassword(passCrypt);
+        String passCrypt = passwordEncoder.encode(customer.getAccount().getCredential().getPassword());
+        customer.getAccount().getCredential().setPassword(passCrypt);
 
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(customerRepository.save(customer));

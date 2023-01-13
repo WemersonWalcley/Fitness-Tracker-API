@@ -27,10 +27,6 @@ public class Customer{
     @MapsId
     private Account account;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "tb_credential_FK")
-    private Credential credential;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

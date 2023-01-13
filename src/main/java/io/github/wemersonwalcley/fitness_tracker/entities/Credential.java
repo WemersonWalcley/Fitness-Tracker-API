@@ -19,6 +19,9 @@ import java.util.Objects;
 public class Credential implements UserDetails, GrantedAuthority {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String username;
 
     @Column(length = 200)

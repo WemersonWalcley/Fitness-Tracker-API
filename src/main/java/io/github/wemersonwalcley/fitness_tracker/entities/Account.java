@@ -25,7 +25,7 @@ import java.util.Objects;
 public class Account implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -38,6 +38,10 @@ public class Account implements Serializable{
 
     @Column
     private LocalDate birthday;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private Credential credential;
 
     @Enumerated(EnumType.STRING)
     @JsonBackReference
