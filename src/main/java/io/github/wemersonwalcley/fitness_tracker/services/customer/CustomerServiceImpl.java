@@ -25,7 +25,6 @@ public class CustomerServiceImpl implements CustomerService{
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(customerRepository.save(customer));
         } catch (ResponseStatusException e) {
-            e.printStackTrace();
             throw new ResponseStatusException(e.getStatus(), e.getMessage());
         }
     }
