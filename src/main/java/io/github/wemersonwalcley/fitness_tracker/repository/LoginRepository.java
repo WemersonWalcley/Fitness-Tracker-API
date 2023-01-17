@@ -1,6 +1,6 @@
-package io.github.wemersonwalcley.fitness_tracker.repositories;
+package io.github.wemersonwalcley.fitness_tracker.repository;
 
-import io.github.wemersonwalcley.fitness_tracker.entities.Credential;
+import io.github.wemersonwalcley.fitness_tracker.entity.Credential;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

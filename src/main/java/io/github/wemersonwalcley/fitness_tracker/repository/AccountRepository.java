@@ -1,4 +1,4 @@
-package io.github.wemersonwalcley.fitness_tracker.repositories;
+package io.github.wemersonwalcley.fitness_tracker.repository;
 
 public interface AccountRepository {
 

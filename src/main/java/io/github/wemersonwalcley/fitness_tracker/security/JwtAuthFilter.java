@@ -1,7 +1,7 @@
 package io.github.wemersonwalcley.fitness_tracker.security;
 
-import io.github.wemersonwalcley.fitness_tracker.entities.Credential;
-import io.github.wemersonwalcley.fitness_tracker.repositories.LoginRepository;
+import io.github.wemersonwalcley.fitness_tracker.entity.Credential;
+import io.github.wemersonwalcley.fitness_tracker.repository.LoginRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;

@@ -1,7 +1,7 @@
-package io.github.wemersonwalcley.fitness_tracker.services.user;
+package io.github.wemersonwalcley.fitness_tracker.service.user;
 
-import io.github.wemersonwalcley.fitness_tracker.entities.Credential;
-import io.github.wemersonwalcley.fitness_tracker.repositories.LoginRepository;
+import io.github.wemersonwalcley.fitness_tracker.entity.Credential;
+import io.github.wemersonwalcley.fitness_tracker.repository.LoginRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

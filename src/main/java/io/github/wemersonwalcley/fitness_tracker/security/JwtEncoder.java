@@ -1,6 +1,6 @@
 package io.github.wemersonwalcley.fitness_tracker.security;
 
-import io.github.wemersonwalcley.fitness_tracker.entities.Credential;
+import io.github.wemersonwalcley.fitness_tracker.entity.Credential;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;

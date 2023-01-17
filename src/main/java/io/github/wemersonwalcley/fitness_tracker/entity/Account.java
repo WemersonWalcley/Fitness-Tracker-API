@@ -1,4 +1,4 @@
-package io.github.wemersonwalcley.fitness_tracker.entities;
+package io.github.wemersonwalcley.fitness_tracker.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.github.wemersonwalcley.fitness_tracker.enumeration.AccessLevelEnum;

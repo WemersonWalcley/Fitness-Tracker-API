@@ -40,7 +40,7 @@ public class SwaggerConfiguration {
                 .securityContexts(Arrays.asList(securityContext()))
                 .securitySchemes(Arrays.asList(apiKey()))
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("io.github.wemersonwalcley.fitness_tracker.controllers"))
+                .apis(RequestHandlerSelectors.basePackage("io.github.wemersonwalcley.fitness_tracker.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

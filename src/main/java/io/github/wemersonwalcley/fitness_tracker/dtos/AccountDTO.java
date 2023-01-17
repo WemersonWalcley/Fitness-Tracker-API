@@ -1,7 +1,7 @@
 package io.github.wemersonwalcley.fitness_tracker.dtos;
 
 
-import io.github.wemersonwalcley.fitness_tracker.entities.Account;
+import io.github.wemersonwalcley.fitness_tracker.entity.Account;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package io.github.wemersonwalcley.fitness_tracker.controllers.account;
+package io.github.wemersonwalcley.fitness_tracker.controller.account;
 
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;

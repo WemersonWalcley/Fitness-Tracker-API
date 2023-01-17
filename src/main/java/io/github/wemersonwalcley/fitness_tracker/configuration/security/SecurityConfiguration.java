@@ -1,6 +1,6 @@
 package io.github.wemersonwalcley.fitness_tracker.configuration.security;
 
-import io.github.wemersonwalcley.fitness_tracker.services.user.UserDetailServiceImpl;
+import io.github.wemersonwalcley.fitness_tracker.service.user.UserDetailServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

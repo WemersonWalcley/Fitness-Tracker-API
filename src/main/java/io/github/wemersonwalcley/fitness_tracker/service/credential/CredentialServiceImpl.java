@@ -1,9 +1,9 @@
-package io.github.wemersonwalcley.fitness_tracker.services.credential;
+package io.github.wemersonwalcley.fitness_tracker.service.credential;
 
 import io.github.wemersonwalcley.fitness_tracker.dtos.CredentialDTO;
 import io.github.wemersonwalcley.fitness_tracker.dtos.TokenDTO;
-import io.github.wemersonwalcley.fitness_tracker.entities.Credential;
-import io.github.wemersonwalcley.fitness_tracker.repositories.LoginRepository;
+import io.github.wemersonwalcley.fitness_tracker.entity.Credential;
+import io.github.wemersonwalcley.fitness_tracker.repository.LoginRepository;
 import io.github.wemersonwalcley.fitness_tracker.security.JwtEncoder;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

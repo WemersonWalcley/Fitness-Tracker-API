@@ -1,4 +1,4 @@
-package io.github.wemersonwalcley.fitness_tracker.services.account;
+package io.github.wemersonwalcley.fitness_tracker.service.account;
 
 public interface AccountService {
 
