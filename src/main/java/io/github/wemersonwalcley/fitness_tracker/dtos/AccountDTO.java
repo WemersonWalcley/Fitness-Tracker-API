@@ -1,4 +1,4 @@
-package io.github.wemersonwalcley.fitness_tracker.DTOS;
+package io.github.wemersonwalcley.fitness_tracker.dtos;
 
 
 import io.github.wemersonwalcley.fitness_tracker.entities.Account;

@@ -1,20 +1,7 @@
-package io.github.wemersonwalcley.fitness_tracker.controllers;
+package io.github.wemersonwalcley.fitness_tracker.controllers.account;
 
-import io.github.wemersonwalcley.fitness_tracker.DTOS.AccountDTO;
-import io.github.wemersonwalcley.fitness_tracker.entities.Account;
-import io.github.wemersonwalcley.fitness_tracker.services.account.AccountServiceImpl;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
-
-import javax.validation.Valid;
 
 @Api(tags = "Accounts")
 @RestController

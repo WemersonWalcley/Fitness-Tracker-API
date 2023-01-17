@@ -4,15 +4,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.github.wemersonwalcley.fitness_tracker.enumeration.AccessLevelEnum;
 import lombok.*;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.Objects;
 
 @Getter

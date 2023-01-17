@@ -1,4 +1,4 @@
-package io.github.wemersonwalcley.fitness_tracker.DTOS;
+package io.github.wemersonwalcley.fitness_tracker.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

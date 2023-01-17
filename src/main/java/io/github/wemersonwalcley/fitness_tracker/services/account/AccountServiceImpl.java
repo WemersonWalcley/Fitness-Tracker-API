@@ -1,20 +1,7 @@
 package io.github.wemersonwalcley.fitness_tracker.services.account;
 
-import io.github.wemersonwalcley.fitness_tracker.DTOS.AccountDTO;
-import io.github.wemersonwalcley.fitness_tracker.entities.Account;
-import io.github.wemersonwalcley.fitness_tracker.repositories.AccountRepository;
-import io.github.wemersonwalcley.fitness_tracker.security.JwtEncoder;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor

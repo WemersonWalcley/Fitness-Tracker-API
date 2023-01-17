@@ -1,7 +1,7 @@
-package io.github.wemersonwalcley.fitness_tracker.controllers;
+package io.github.wemersonwalcley.fitness_tracker.controllers.credential;
 
-import io.github.wemersonwalcley.fitness_tracker.DTOS.CredentialDTO;
-import io.github.wemersonwalcley.fitness_tracker.DTOS.TokenDTO;
+import io.github.wemersonwalcley.fitness_tracker.dtos.CredentialDTO;
+import io.github.wemersonwalcley.fitness_tracker.dtos.TokenDTO;
 import io.github.wemersonwalcley.fitness_tracker.services.credential.CredentialServiceImpl;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;

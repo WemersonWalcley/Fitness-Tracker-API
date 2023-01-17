@@ -1,11 +1,5 @@
 package io.github.wemersonwalcley.fitness_tracker.services.account;
 
-import io.github.wemersonwalcley.fitness_tracker.DTOS.AccountDTO;
-import io.github.wemersonwalcley.fitness_tracker.entities.Account;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
-
 public interface AccountService {
 
 //    Page<AccountDTO> findAll(Pageable pageable);
