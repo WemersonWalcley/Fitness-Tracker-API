@@ -35,7 +35,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private String getToken(HttpServletRequest request){
         String token = request.getHeader("Authorization");
-        if(token == null || token.isEmpty() || !token.startsWith("Bearer ")){
+        if(token == null || !token.startsWith("Bearer ")){
             return null;
         }
         return token.substring(7, token.length());
@@ -43,7 +43,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private void authenticateAccount(String token){
         Long accountId = jwtEncoder.getAccountId(token);
-        Credential credential = repository.findById(accountId).get();
+        Credential credential = repository.findById(accountId).orElse(null);
+        assert credential != null;
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(credential, null, credential.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
     }

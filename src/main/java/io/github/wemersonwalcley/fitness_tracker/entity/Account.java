@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.github.wemersonwalcley.fitness_tracker.enumeration.AccessLevelEnum;
 import lombok.*;
 import org.hibernate.Hibernate;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
@@ -55,50 +54,4 @@ public class Account implements Serializable{
     public int hashCode() {
         return getClass().hashCode();
     }
-
-
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return null;
-//    }
-//
-//    @Override
-//    public String getUsername() {
-//        switch (accessLevelEnum) {
-//            case ADMIN:
-//                return accessLevelEnum.name();
-//            default:
-//                return "default";
-//        }
-//    }
-//
-//    @Override
-//    public boolean isAccountNonExpired() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonLocked() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isCredentialsNonExpired() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isEnabled() {
-//        return false;
-//    }
-//
-//    @Override
-//    public String getAuthority() {
-//        switch (accessLevelEnum) {
-//            case ADMIN:
-//                return "ROLE_ADMIN";
-//            default:
-//                return "ROLE_DEFAULT";
-//        }
-//    }
 }

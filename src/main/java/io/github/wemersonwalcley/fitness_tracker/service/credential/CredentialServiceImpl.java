@@ -23,15 +23,18 @@ public class CredentialServiceImpl implements CredentialService {
 
     public ResponseEntity<TokenDTO> authenticate(CredentialDTO dto) {
         Optional<Credential> user = Optional.ofNullable(loginRepository.findByUsername(dto.getUsername()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não encontrado.")));
-        boolean matches = passwordEncoder.matches(dto.getPassword(), user.get().getPassword());
+        boolean matches = false;
+        if (user.isPresent()) {
+            matches = passwordEncoder.matches(dto.getPassword(), user.get().getPassword());
+        }
 
-        if(matches){
+        if (matches) {
             String token = jwtEncoder.generateToken(user.get());
             TokenDTO tokenDTO = new TokenDTO();
             tokenDTO.setToken(token);
             tokenDTO.setLogin(dto.getUsername());
             return ResponseEntity.ok(tokenDTO);
-        }else{
+        } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Dados incorretos. Verifique os dados da requisisão");
         }
     }
