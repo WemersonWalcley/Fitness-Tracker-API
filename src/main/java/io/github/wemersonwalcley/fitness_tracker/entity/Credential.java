@@ -1,14 +1,12 @@
 package io.github.wemersonwalcley.fitness_tracker.entity;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -58,16 +56,4 @@ public class Credential implements UserDetails, GrantedAuthority {
         return false;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Credential credential = (Credential) o;
-        return username != null && Objects.equals(username, credential.username);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

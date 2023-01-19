@@ -3,12 +3,10 @@ package io.github.wemersonwalcley.fitness_tracker.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.github.wemersonwalcley.fitness_tracker.enumeration.AccessLevelEnum;
 import lombok.*;
-import org.hibernate.Hibernate;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -42,16 +40,4 @@ public class Account implements Serializable{
     @JsonBackReference
     private AccessLevelEnum accessLevelEnum;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Account account = (Account) o;
-        return getId() != null && Objects.equals(getId(), account.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }
