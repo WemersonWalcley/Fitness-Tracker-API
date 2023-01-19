@@ -10,8 +10,8 @@ import java.util.Map;
 @JsonFilter("attributeFilter")
 public enum AccessLevelEnum {
 
-    ADMIN("Administrador"),
-    USER("Usuario");
+    ROLE_ADMIN("Administrador"),
+    ROLE_USER("Usuario");
 
     private String displayName;
 

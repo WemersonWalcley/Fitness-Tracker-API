@@ -1,5 +1,8 @@
 package io.github.wemersonwalcley.fitness_tracker.repository;
 
-public interface AccountRepository {
+import io.github.wemersonwalcley.fitness_tracker.entity.Account;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AccountRepository extends JpaRepository<Account, Long> {
 
 }
