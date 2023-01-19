@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.Collection;
 
 @Getter
@@ -14,7 +15,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Credential implements UserDetails, GrantedAuthority {
+public class Credential implements Serializable, UserDetails, GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
