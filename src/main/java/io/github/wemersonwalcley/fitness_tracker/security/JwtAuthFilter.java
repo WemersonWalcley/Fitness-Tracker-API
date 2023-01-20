@@ -19,7 +19,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private JwtEncoder jwtEncoder;
     private LoginRepository repository;
-    private AccountRepository accountRepository;
 
     public JwtAuthFilter(JwtEncoder jwtEncoder, LoginRepository repository) {
         this.jwtEncoder = jwtEncoder;
@@ -48,8 +47,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private void authenticateAccount(String token){
         Long accountId = jwtEncoder.getAccountId(token);
         Credential credential = repository.findById(accountId).orElseThrow(() -> new UsernameNotFoundException("Credential not found by id"));
-        Account account = accountRepository.findById(credential.getId()).orElseThrow(() -> new UsernameNotFoundException("Account not found by credential id"));
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(credential, null, account.getAuthorities());
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(credential, null, credential.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
     }
 }
