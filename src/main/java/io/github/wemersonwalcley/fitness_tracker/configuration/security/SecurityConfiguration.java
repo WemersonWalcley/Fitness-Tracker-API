@@ -53,16 +53,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     //Definindo autorizações e configurando roles
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/v2/api-docs",
-                        "/swagger-resources",
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/authenticate",
                         "/swagger-resources/**",
-                        "/configuration/ui",
-                        "/configuration/security",
-                        "/swagger-ui.html",
-                        "/webjars/**").permitAll().and()
-                .authorizeRequests().antMatchers("/h2-console/**").permitAll();
-        http.csrf().disable();
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**",
+                        "/webjars/**", "/h2-console/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated();
         http.headers().frameOptions().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().headers().frameOptions().disable()
