@@ -1,6 +1,6 @@
 package io.github.wemersonwalcley.fitness_tracker.configuration.security;
 
-import io.github.wemersonwalcley.fitness_tracker.repository.LoginRepository;
+import io.github.wemersonwalcley.fitness_tracker.repository.CredentialRepository;
 import io.github.wemersonwalcley.fitness_tracker.security.JwtAuthFilter;
 import io.github.wemersonwalcley.fitness_tracker.security.JwtEncoder;
 import io.github.wemersonwalcley.fitness_tracker.service.user.UserDetailServiceImpl;
@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -33,7 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private JwtEncoder jwtEncoder;
 
     @Autowired
-    private LoginRepository loginRepository;
+    private CredentialRepository credentialRepository;
 
     //Gera um hashCode a partir do password. Sempre gera um hash diferente.
     @Bean
@@ -42,7 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     public OncePerRequestFilter jwtFilter() {
-        return new JwtAuthFilter(jwtEncoder, loginRepository);
+        return new JwtAuthFilter(jwtEncoder, credentialRepository);
     }
 
     //Adiciona usuários ao contexto do security

@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = "tb_customer")
-public class Customer implements Serializable {
+public class CustomerEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +24,6 @@ public class Customer implements Serializable {
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "tb_account_id")
     @MapsId
-    private Account account;
+    private AccountEntity accountEntity;
 
 }

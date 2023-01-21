@@ -2,7 +2,7 @@ package io.github.wemersonwalcley.fitness_tracker.service.customer;
 
 import io.github.wemersonwalcley.fitness_tracker.converter.CustomerConverter;
 import io.github.wemersonwalcley.fitness_tracker.dtos.CustomerDTO;
-import io.github.wemersonwalcley.fitness_tracker.entity.Customer;
+import io.github.wemersonwalcley.fitness_tracker.entity.CustomerEntity;
 import io.github.wemersonwalcley.fitness_tracker.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +23,13 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Transactional
     public CustomerDTO save(CustomerDTO customerDTO) {
-        Customer customer = customerConverter.convertDtoToEntity(customerDTO);
-        String passCrypt = passwordEncoder.encode(customer.getAccount().getCredential().getPassword());
-        customer.getAccount().getCredential().setPassword(passCrypt);
+        CustomerEntity customerEntity = customerConverter.convertDtoToEntity(customerDTO);
+        String passCrypt = passwordEncoder.encode(customerEntity.getAccountEntity().getCredentialEntity().getPassword());
+        customerEntity.getAccountEntity().getCredentialEntity().setPassword(passCrypt);
 
         try {
-            customerRepository.save(customer);
-            return customerConverter.convertEntityToDto(customer);
+            customerRepository.save(customerEntity);
+            return customerConverter.convertEntityToDto(customerEntity);
         } catch (ResponseStatusException e) {
             throw new ResponseStatusException(e.getStatus(), e.getMessage());
         }

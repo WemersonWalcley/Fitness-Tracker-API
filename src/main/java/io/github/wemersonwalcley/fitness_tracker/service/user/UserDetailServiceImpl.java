@@ -1,7 +1,7 @@
 package io.github.wemersonwalcley.fitness_tracker.service.user;
 
-import io.github.wemersonwalcley.fitness_tracker.entity.Credential;
-import io.github.wemersonwalcley.fitness_tracker.repository.LoginRepository;
+import io.github.wemersonwalcley.fitness_tracker.entity.CredentialEntity;
+import io.github.wemersonwalcley.fitness_tracker.repository.CredentialRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserDetailServiceImpl implements UserDetailsService {
 
-    private LoginRepository repository;
+    private CredentialRepository credentialRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Credential credential = repository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
-        return new User(credential.getUsername(), credential.getPassword(), true, true, true, true, credential.getAuthorities());
+        CredentialEntity credentialEntity = credentialRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+        return new User(credentialEntity.getUsername(), credentialEntity.getPassword(), true, true, true, true, credentialEntity.getAuthorities());
     }
 }

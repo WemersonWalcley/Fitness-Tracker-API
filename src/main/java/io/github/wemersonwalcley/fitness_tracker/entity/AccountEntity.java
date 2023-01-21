@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Account implements Serializable {
+public class AccountEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +33,6 @@ public class Account implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
-    private Credential credential;
+    private CredentialEntity credentialEntity;
 
 }

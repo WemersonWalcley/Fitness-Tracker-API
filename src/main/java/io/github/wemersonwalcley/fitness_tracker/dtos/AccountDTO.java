@@ -1,7 +1,7 @@
 package io.github.wemersonwalcley.fitness_tracker.dtos;
 
 
-import io.github.wemersonwalcley.fitness_tracker.entity.Account;
+import io.github.wemersonwalcley.fitness_tracker.entity.AccountEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,9 +18,9 @@ public class AccountDTO {
     private LocalDate birthday;
     private String name;
 
-    public AccountDTO(Account account){
-        this.email = account.getEmail();
-        this.birthday = account.getBirthday();
-        this.name = account.getName();
+    public AccountDTO(AccountEntity accountEntity){
+        this.email = accountEntity.getEmail();
+        this.birthday = accountEntity.getBirthday();
+        this.name = accountEntity.getName();
     }
 }
