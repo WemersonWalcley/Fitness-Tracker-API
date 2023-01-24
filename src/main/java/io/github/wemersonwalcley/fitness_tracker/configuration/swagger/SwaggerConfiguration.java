@@ -22,7 +22,7 @@ public class SwaggerConfiguration {
                         .addSecuritySchemes(securitySchemeName, new SecurityScheme()
                                 .name(securitySchemeName)
                                 .type(SecurityScheme.Type.HTTP)
-                                .scheme("bearer")
+                                .scheme("Bearer")
                                 .bearerFormat("JWT")))
                 .info(apiInfo());
     }
@@ -31,7 +31,7 @@ public class SwaggerConfiguration {
         return new Info()
                 .title("fitness tracker API")
                 .description("Sistema de rastreio e monitoramento de atividades físicas")
-                .version("V1.0")
+                .version("1.0")
                 .contact(contact());
 
     }
