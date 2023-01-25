@@ -15,6 +15,7 @@
   <li>Hibernate</li>
   <li>PostgreSQL</li>
   <li>Maven como gerenciador de dependências</li>
+  <li>SonarQube</li>
 </ul> 
 
 <h2 align="center">Como executar a aplicação</h2>
