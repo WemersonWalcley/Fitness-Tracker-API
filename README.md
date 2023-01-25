@@ -13,6 +13,7 @@
   <li>Spring Framework</li>  
   <li>JPA</li> 
   <li>Hibernate</li>
+  <li>H2-Database</li>
   <li>PostgreSQL</li>
   <li>Maven como gerenciador de dependências</li>
   <li>SonarQube</li>
