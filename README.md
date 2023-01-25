@@ -11,6 +11,7 @@
   <li>Java JDK versão 11 como linguagem de programação</li>
   <li>IntelliJ IDEA IDE</li>
   <li>Spring Framework</li>  
+  <li>JWT</li>  
   <li>JPA</li> 
   <li>Hibernate</li>
   <li>H2-Database</li>
