@@ -14,8 +14,8 @@ public class CustomerController {
 
 
     @GetMapping(value = "/{id}")
-    public CustomerDTO findById(@PathVariable Long id) {
-        return customerServiceImpl.findCustomerById(id);
+    public CustomerDTO getCustomerById(@PathVariable Long id) {
+        return customerServiceImpl.getCustomerById(id);
     }
 
     @PostMapping

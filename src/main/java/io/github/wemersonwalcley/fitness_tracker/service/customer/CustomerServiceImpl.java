@@ -6,22 +6,33 @@ import io.github.wemersonwalcley.fitness_tracker.entity.CustomerEntity;
 import io.github.wemersonwalcley.fitness_tracker.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Optional;
+
 @AllArgsConstructor
 @Service
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements CustomerService {
 
     private final BCryptPasswordEncoder passwordEncoder;
     private final CustomerRepository customerRepository;
 
     @Autowired
     private CustomerConverter customerConverter;
-    public CustomerDTO findCustomerById(Long id) {
-        return null;
+
+    public CustomerDTO getCustomerById(Long id) {
+        CustomerEntity customer = customerRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Credential not found by id"));
+
+        try {
+            return customerConverter.convertEntityToDto(customer);
+        } catch (ResponseStatusException e) {
+            throw new ResponseStatusException(e.getStatus(), e.getMessage());
+        }
+
     }
 
     @Transactional
