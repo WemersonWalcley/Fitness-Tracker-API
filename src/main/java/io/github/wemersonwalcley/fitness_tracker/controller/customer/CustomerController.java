@@ -13,8 +13,8 @@ public class CustomerController {
     private CustomerServiceImpl customerServiceImpl;
 
 
-    @GetMapping(value = "/{id}")
-    public CustomerDTO getCustomerById(@PathVariable Long id) {
+    @GetMapping("/{id}")
+    public CustomerDTO getCustomerById(@PathVariable("id") Long id) {
         return customerServiceImpl.getCustomerById(id);
     }
 
