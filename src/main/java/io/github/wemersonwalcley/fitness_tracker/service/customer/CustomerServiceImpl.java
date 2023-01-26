@@ -20,6 +20,9 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Autowired
     private CustomerConverter customerConverter;
+    public CustomerDTO findCustomerById(Long id) {
+        return null;
+    }
 
     @Transactional
     public CustomerDTO save(CustomerDTO customerDTO) {

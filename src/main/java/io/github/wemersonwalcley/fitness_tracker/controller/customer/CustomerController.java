@@ -3,10 +3,7 @@ package io.github.wemersonwalcley.fitness_tracker.controller.customer;
 import io.github.wemersonwalcley.fitness_tracker.dtos.CustomerDTO;
 import io.github.wemersonwalcley.fitness_tracker.service.customer.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/customer")
@@ -14,6 +11,12 @@ public class CustomerController {
 
     @Autowired
     private CustomerServiceImpl customerServiceImpl;
+
+
+    @GetMapping(value = "/{id}")
+    public CustomerDTO findById(@PathVariable Long id) {
+        return customerServiceImpl.findCustomerById(id);
+    }
 
     @PostMapping
     public CustomerDTO save(@RequestBody CustomerDTO customerDTO) {
