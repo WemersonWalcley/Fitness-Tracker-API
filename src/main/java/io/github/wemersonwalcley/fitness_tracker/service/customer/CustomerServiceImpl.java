@@ -25,7 +25,7 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerConverter customerConverter;
 
     public CustomerDTO getCustomerById(Long id) {
-        CustomerEntity customer = customerRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Credential not found by id"));
+        CustomerEntity customer = customerRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com o id: " + id));
 
         try {
             return customerConverter.convertEntityToDto(customer);
