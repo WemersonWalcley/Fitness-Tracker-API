@@ -22,7 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.server.ResponseStatusException;
 
 @ExtendWith(MockitoExtension.class)
-public class CustomerServiceImplTest {
+class CustomerServiceImplTest {
 
     @Mock
     private CustomerRepository customerRepository;
@@ -35,7 +35,7 @@ public class CustomerServiceImplTest {
     private CustomerDTO customerDTO;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         customerService = new CustomerServiceImpl(passwordEncoder, customerRepository, customerConverter);
         customerEntity = new CustomerEntity();
         customerEntity.setId(1L);
@@ -43,7 +43,7 @@ public class CustomerServiceImplTest {
     }
 
     @Test
-    public void getCustomerById_validId_returnsCustomerDTO() {
+    void getCustomerById_validId_returnsCustomerDTO() {
         when(customerRepository.findById(1L)).thenReturn(java.util.Optional.of(customerEntity));
         when(customerConverter.convertEntityToDto(customerEntity)).thenReturn(customerDTO);
 
@@ -53,14 +53,14 @@ public class CustomerServiceImplTest {
     }
 
     @Test
-    public void getCustomerById_invalidId_throwsUsernameNotFoundException() {
+    void getCustomerById_invalidId_throwsUsernameNotFoundException() {
         when(customerRepository.findById(2L)).thenReturn(java.util.Optional.empty());
 
         assertThrows(UsernameNotFoundException.class, () -> customerService.getCustomerById(2L));
     }
 
     @Test
-    public void whenSave_thenReturnCustomerDTO(){
+    void whenSave_thenReturnCustomerDTO() {
         CustomerEntity customerEntity = new CustomerEntity();
         CustomerDTO customerDTO = new CustomerDTO();
         AccountEntity accountEntity = new AccountEntity();
@@ -80,7 +80,7 @@ public class CustomerServiceImplTest {
     }
 
     @Test
-    public void whenSaveThrowsException_thenThrowResponseStatusException(){
+    void whenSaveThrowsException_thenThrowResponseStatusException() {
         CustomerEntity customerEntity = new CustomerEntity();
         CustomerDTO customerDTO = new CustomerDTO();
         AccountEntity accountEntity = new AccountEntity();

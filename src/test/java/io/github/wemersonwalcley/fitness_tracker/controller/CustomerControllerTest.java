@@ -14,7 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class CustomerControllerTest {
+class CustomerControllerTest {
 
     @Mock
     private CustomerService customerService;
@@ -23,7 +23,7 @@ public class CustomerControllerTest {
     private CustomerController customerController;
 
     @Test
-    public void testGetCustomerById() {
+    void testGetCustomerById() {
         Long id = 1L;
         CustomerDTO expectedCustomer = new CustomerDTO();
 
@@ -36,7 +36,7 @@ public class CustomerControllerTest {
     }
 
     @Test
-    public void testSave() {
+    void testSave() {
         CustomerDTO customerDTO = new CustomerDTO();
         CustomerDTO expectedCustomer = new CustomerDTO();
 
