@@ -7,7 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 class FitnessTrackerApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void mainMethodStartsApplication() {
+		FitnessTrackerApplication.main(new String[]{});
 	}
 
 }
