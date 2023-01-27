@@ -12,14 +12,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
-
-@AllArgsConstructor
 @Service
+@AllArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-    private final BCryptPasswordEncoder passwordEncoder;
-    private final CustomerRepository customerRepository;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @Autowired
     private CustomerConverter customerConverter;
