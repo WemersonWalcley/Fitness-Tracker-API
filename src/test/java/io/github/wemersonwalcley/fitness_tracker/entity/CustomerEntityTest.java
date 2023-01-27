@@ -19,7 +19,7 @@ public class CustomerEntityTest {
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         assertEquals("CustomerEntity(id=1, listaTreino=Treino de musculação, " +
                 "accountEntity=AccountEntity(id=1, name=Name Example, email=example@email.com, " +
                 "birthday=2023-01-27, credentialEntity=CredentialEntity(id=1, username=username, " +
@@ -27,7 +27,7 @@ public class CustomerEntityTest {
     }
 
     @Test
-    public void testAllArgsConstructor() {
+    void testAllArgsConstructor() {
         CustomerEntity customerEntity = new CustomerEntity(1L, "Treino de musculação", object.getAccountEntity());
         assertEquals(1L, customerEntity.getId());
         assertEquals("Treino de musculação", object.getListaTreino());
@@ -35,7 +35,7 @@ public class CustomerEntityTest {
     }
 
     @Test
-    public void testNoArgsConstructor() {
+    void testNoArgsConstructor() {
         CustomerEntity customerEntity = new CustomerEntity();
         Assertions.assertNull(customerEntity.getId());
         Assertions.assertNull(customerEntity.getListaTreino());
