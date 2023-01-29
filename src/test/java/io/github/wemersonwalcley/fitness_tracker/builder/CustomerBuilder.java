@@ -1,6 +1,5 @@
 package io.github.wemersonwalcley.fitness_tracker.builder;
 
-import io.github.wemersonwalcley.fitness_tracker.entity.AccountEntity;
 import io.github.wemersonwalcley.fitness_tracker.entity.CustomerEntity;
 
 public class CustomerBuilder {

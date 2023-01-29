@@ -10,8 +10,8 @@ public class AccountBuilder {
         accountEntity.setId(1L);
         accountEntity.setCredentialEntity(CredentialBuilder.createObject());
         accountEntity.setBirthday(LocalDate.now());
-        accountEntity.setEmail("example@email.com");
-        accountEntity.setName("Name Example");
+        accountEntity.setEmail("email@email.com");
+        accountEntity.setName("Robert Owen");
 
         return accountEntity;
     }

@@ -4,6 +4,8 @@ import io.github.wemersonwalcley.fitness_tracker.builder.CustomerBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,8 +23,8 @@ class CustomerEntityTest {
     @Test
     void testToString() {
         assertEquals("CustomerEntity(id=1, listaTreino=Treino de musculação, " +
-                "accountEntity=AccountEntity(id=1, name=Name Example, email=example@email.com, " +
-                "birthday=2023-01-27, credentialEntity=CredentialEntity(id=1, username=username, " +
+                "accountEntity=AccountEntity(id=1, name=Robert Owen, email=email@email.com, " +
+                "birthday=" + LocalDate.now() + ", credentialEntity=CredentialEntity(id=1, username=username, " +
                 "password=password, accessLevelEnum=ADMIN)))", object.toString());
     }
 
