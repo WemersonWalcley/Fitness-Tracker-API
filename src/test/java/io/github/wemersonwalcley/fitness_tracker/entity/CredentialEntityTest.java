@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CredentialEntityTest {
 
     CredentialEntity credentialBuilder = CredentialBuilder.createObject();
+    CredentialEntity credentialEntity;
 
     @Test
     void testAllArgsConstructor() {
@@ -18,6 +19,15 @@ class CredentialEntityTest {
         assertEquals(1L, credentialEntity.getId());
         assertEquals("Robert Owen", credentialEntity.getUsername());
         assertEquals("password", credentialEntity.getPassword());
+    }
+
+    @Test
+    void testNoArgsConstructor() {
+        credentialEntity = new CredentialEntity();
+        Assertions.assertNull(credentialEntity.getId());
+        Assertions.assertNull(credentialEntity.getUsername());
+        Assertions.assertNull(credentialEntity.getPassword());
+        Assertions.assertNull(credentialEntity.getAccessLevelEnum());
     }
 
 }
