@@ -4,7 +4,6 @@ import io.github.wemersonwalcley.fitness_tracker.builder.CredentialBuilder;
 import io.github.wemersonwalcley.fitness_tracker.enumeration.AccessLevelEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -28,6 +27,11 @@ class CredentialEntityTest {
         Assertions.assertNull(credentialEntity.getUsername());
         Assertions.assertNull(credentialEntity.getPassword());
         Assertions.assertNull(credentialEntity.getAccessLevelEnum());
+    }
+
+    @Test
+    void testToString() {
+        assertEquals("CredentialEntity(id=1, username=username, password=password, accessLevelEnum=ADMIN)", credentialBuilder.toString());
     }
 
 }
