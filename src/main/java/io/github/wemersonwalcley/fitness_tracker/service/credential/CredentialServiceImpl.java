@@ -35,7 +35,7 @@ public class CredentialServiceImpl implements CredentialService {
             tokenDTO.setLogin(dto.getUsername());
             return ResponseEntity.ok(tokenDTO);
         } else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Dados incorretos. Verifique os dados da requisisão");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Dados incorretos. Verifique os dados da requisição");
         }
     }
 }
