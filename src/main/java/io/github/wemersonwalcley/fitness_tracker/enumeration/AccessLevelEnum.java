@@ -11,7 +11,8 @@ import java.util.Map;
 public enum AccessLevelEnum {
 
     ADMIN("Administrador"),
-    USER("Usuario");
+    USER("Usuario"),
+    DEFAULT("Default");
 
     private String displayName;
 

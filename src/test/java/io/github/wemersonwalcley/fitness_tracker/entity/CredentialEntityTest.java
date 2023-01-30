@@ -5,12 +5,33 @@ import io.github.wemersonwalcley.fitness_tracker.enumeration.AccessLevelEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CredentialEntityTest {
 
-    CredentialEntity credentialBuilder = CredentialBuilder.createObject();
-    CredentialEntity credentialEntity;
+    CredentialEntity credentialBuilder = CredentialBuilder.createObject(AccessLevelEnum.ADMIN);
+
+    @Test
+    void testGetAuthority() {
+        CredentialEntity credentialBuilderAdmin = CredentialBuilder.createObject(AccessLevelEnum.ADMIN);
+        assertEquals("ROLE_ADMIN", credentialBuilderAdmin.getAuthority());
+
+        CredentialEntity credentialBuilderUser = CredentialBuilder.createObject(AccessLevelEnum.USER);
+        assertEquals("ROLE_USER", credentialBuilderUser.getAuthority());
+
+        CredentialEntity credentialBuilderDefault = CredentialBuilder.createObject(AccessLevelEnum.DEFAULT);
+        assertEquals("ROLE_DEFAULT", credentialBuilderDefault.getAuthority());
+    }
+
+    @Test
+    void testGettersAndSetters() {
+        assertThat(credentialBuilder.getAuthorities()).isEqualTo(credentialBuilder.getAuthorities());
+        assertThat(credentialBuilder.isAccountNonExpired()).isEqualTo(true);
+        assertThat(credentialBuilder.isAccountNonLocked()).isEqualTo(true);
+        assertThat(credentialBuilder.isCredentialsNonExpired()).isEqualTo(true);
+        assertThat(credentialBuilder.isEnabled()).isEqualTo(true);
+    }
 
     @Test
     void testAllArgsConstructor() {
@@ -22,7 +43,7 @@ class CredentialEntityTest {
 
     @Test
     void testNoArgsConstructor() {
-        credentialEntity = new CredentialEntity();
+        CredentialEntity credentialEntity = new CredentialEntity();
         Assertions.assertNull(credentialEntity.getId());
         Assertions.assertNull(credentialEntity.getUsername());
         Assertions.assertNull(credentialEntity.getPassword());
