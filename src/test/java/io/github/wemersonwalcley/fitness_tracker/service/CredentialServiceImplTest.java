@@ -67,7 +67,7 @@ class CredentialServiceImplTest {
     }
 
     @Test
-    public void testAuthenticate_IncorrectPassword() {
+    void testAuthenticate_IncorrectPassword() {
         CredentialDTO dto = new CredentialDTO();
         dto.setUsername("username");
         dto.setPassword("password");

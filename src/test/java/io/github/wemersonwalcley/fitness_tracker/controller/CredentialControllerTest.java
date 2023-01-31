@@ -25,7 +25,7 @@ class CredentialControllerTest {
     private CredentialController controller;
 
     @Test
-    public void testAuthenticate() {
+    void testAuthenticate() {
         CredentialDTO dto = new CredentialDTO();
         dto.setUsername("user");
         dto.setPassword("password");

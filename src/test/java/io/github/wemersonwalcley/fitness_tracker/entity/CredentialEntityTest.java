@@ -27,10 +27,10 @@ class CredentialEntityTest {
     @Test
     void testGettersAndSetters() {
         assertThat(credentialBuilder.getAuthorities()).isEqualTo(credentialBuilder.getAuthorities());
-        assertThat(credentialBuilder.isAccountNonExpired()).isEqualTo(true);
-        assertThat(credentialBuilder.isAccountNonLocked()).isEqualTo(true);
-        assertThat(credentialBuilder.isCredentialsNonExpired()).isEqualTo(true);
-        assertThat(credentialBuilder.isEnabled()).isEqualTo(true);
+        assertThat(credentialBuilder.isAccountNonExpired()).isTrue();
+        assertThat(credentialBuilder.isAccountNonLocked()).isTrue();
+        assertThat(credentialBuilder.isCredentialsNonExpired()).isTrue();
+        assertThat(credentialBuilder.isEnabled()).isTrue();
     }
 
     @Test
