@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AccessLevelEnumTest {
+class AccessLevelEnumTest {
 
     @Test
-    public void testGetDisplayName() {
+    void testGetDisplayName() {
         assertEquals("Administrador", AccessLevelEnum.ADMIN.getDisplayName());
         assertEquals("Usuario", AccessLevelEnum.USER.getDisplayName());
         assertEquals("Default", AccessLevelEnum.DEFAULT.getDisplayName());
