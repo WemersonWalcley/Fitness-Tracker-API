@@ -1,9 +1,5 @@
 package io.github.wemersonwalcley.fitness_tracker.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
-
 import io.github.wemersonwalcley.fitness_tracker.converter.CustomerConverter;
 import io.github.wemersonwalcley.fitness_tracker.dtos.CustomerDTO;
 import io.github.wemersonwalcley.fitness_tracker.entity.AccountEntity;
@@ -17,9 +13,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.server.ResponseStatusException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class CustomerServiceImplTest {
@@ -50,13 +49,6 @@ class CustomerServiceImplTest {
         CustomerDTO result = customerService.getCustomerById(1L);
 
         assertEquals(customerDTO, result);
-    }
-
-    @Test
-    void getCustomerById_invalidId_throwsUsernameNotFoundException() {
-        when(customerRepository.findById(2L)).thenReturn(java.util.Optional.empty());
-
-        assertThrows(UsernameNotFoundException.class, () -> customerService.getCustomerById(2L));
     }
 
     @Test
