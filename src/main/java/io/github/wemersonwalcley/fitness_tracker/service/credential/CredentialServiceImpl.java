@@ -12,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class CredentialServiceImpl implements CredentialService {
@@ -22,14 +21,12 @@ public class CredentialServiceImpl implements CredentialService {
     private final PasswordEncoder passwordEncoder;
 
     public ResponseEntity<TokenDTO> authenticate(CredentialDTO dto) {
-        Optional<CredentialEntity> user = Optional.ofNullable(credentialRepository.findByUsername(dto.getUsername()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não encontrado.")));
-        boolean matches = false;
-        if (user.isPresent()) {
-            matches = passwordEncoder.matches(dto.getPassword(), user.get().getPassword());
-        }
+        CredentialEntity user = credentialRepository.findByUsername(dto.getUsername()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não encontrado."));
+        boolean matches;
+        matches = passwordEncoder.matches(dto.getPassword(), user.getPassword());
 
         if (matches) {
-            String token = jwtEncoder.generateToken(user.get());
+            String token = jwtEncoder.generateToken(user);
             TokenDTO tokenDTO = new TokenDTO();
             tokenDTO.setToken(token);
             tokenDTO.setLogin(dto.getUsername());
