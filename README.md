@@ -17,6 +17,7 @@
   <li>H2-Database</li>
   <li>PostgreSQL</li>
   <li>Maven como gerenciador de dependências</li>
+  <li>Junit5</li>
   <li>SonarQube</li>
 </ul> 
 
