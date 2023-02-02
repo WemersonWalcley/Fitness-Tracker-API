@@ -2,9 +2,9 @@ package io.github.wemersonwalcley.fitness_tracker.service;
 
 import io.github.wemersonwalcley.fitness_tracker.converter.CustomerConverter;
 import io.github.wemersonwalcley.fitness_tracker.dtos.CustomerDTO;
-import io.github.wemersonwalcley.fitness_tracker.entity.AccountEntity;
-import io.github.wemersonwalcley.fitness_tracker.entity.CredentialEntity;
-import io.github.wemersonwalcley.fitness_tracker.entity.CustomerEntity;
+import io.github.wemersonwalcley.fitness_tracker.model.AccountModel;
+import io.github.wemersonwalcley.fitness_tracker.model.CredentialModel;
+import io.github.wemersonwalcley.fitness_tracker.model.CustomerModel;
 import io.github.wemersonwalcley.fitness_tracker.repository.CustomerRepository;
 import io.github.wemersonwalcley.fitness_tracker.service.customer.CustomerServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,21 +30,21 @@ class CustomerServiceImplTest {
     @Mock
     private BCryptPasswordEncoder passwordEncoder;
     private CustomerServiceImpl customerService;
-    private CustomerEntity customerEntity;
+    private CustomerModel customerModel;
     private CustomerDTO customerDTO;
 
     @BeforeEach
     void setUp() {
         customerService = new CustomerServiceImpl(passwordEncoder, customerRepository, customerConverter);
-        customerEntity = new CustomerEntity();
-        customerEntity.setId(1L);
+        customerModel = new CustomerModel();
+        customerModel.setId(1L);
         customerDTO = new CustomerDTO();
     }
 
     @Test
     void getCustomerById_validId_returnsCustomerDTO() {
-        when(customerRepository.findById(1L)).thenReturn(java.util.Optional.of(customerEntity));
-        when(customerConverter.convertEntityToDto(customerEntity)).thenReturn(customerDTO);
+        when(customerRepository.findById(1L)).thenReturn(java.util.Optional.of(customerModel));
+        when(customerConverter.convertEntityToDto(customerModel)).thenReturn(customerDTO);
 
         CustomerDTO result = customerService.getCustomerById(1L);
 
@@ -53,18 +53,18 @@ class CustomerServiceImplTest {
 
     @Test
     void whenSave_thenReturnCustomerDTO() {
-        CustomerEntity customerEntity = new CustomerEntity();
+        CustomerModel customerModel = new CustomerModel();
         CustomerDTO customerDTO = new CustomerDTO();
-        AccountEntity accountEntity = new AccountEntity();
-        CredentialEntity credentialEntity = new CredentialEntity();
-        credentialEntity.setPassword("12345");
-        accountEntity.setCredentialEntity(credentialEntity);
-        customerEntity.setAccountEntity(accountEntity);
+        AccountModel accountModel = new AccountModel();
+        CredentialModel credentialModel = new CredentialModel();
+        credentialModel.setPassword("12345");
+        accountModel.setCredentialModel(credentialModel);
+        customerModel.setAccountModel(accountModel);
 
-        when(customerConverter.convertDtoToEntity(customerDTO)).thenReturn(customerEntity);
+        when(customerConverter.convertDtoToEntity(customerDTO)).thenReturn(customerModel);
         when(passwordEncoder.encode("12345")).thenReturn("54321");
-        when(customerRepository.save(customerEntity)).thenReturn(customerEntity);
-        when(customerConverter.convertEntityToDto(customerEntity)).thenReturn(customerDTO);
+        when(customerRepository.save(customerModel)).thenReturn(customerModel);
+        when(customerConverter.convertEntityToDto(customerModel)).thenReturn(customerDTO);
 
         CustomerDTO savedCustomerDTO = customerService.save(customerDTO);
 
@@ -73,17 +73,17 @@ class CustomerServiceImplTest {
 
     @Test
     void whenSaveThrowsException_thenThrowResponseStatusException() {
-        CustomerEntity customerEntity = new CustomerEntity();
+        CustomerModel customerModel = new CustomerModel();
         CustomerDTO customerDTO = new CustomerDTO();
-        AccountEntity accountEntity = new AccountEntity();
-        CredentialEntity credentialEntity = new CredentialEntity();
-        credentialEntity.setPassword("12345");
-        accountEntity.setCredentialEntity(credentialEntity);
-        customerEntity.setAccountEntity(accountEntity);
+        AccountModel accountModel = new AccountModel();
+        CredentialModel credentialModel = new CredentialModel();
+        credentialModel.setPassword("12345");
+        accountModel.setCredentialModel(credentialModel);
+        customerModel.setAccountModel(accountModel);
 
-        when(customerConverter.convertDtoToEntity(customerDTO)).thenReturn(customerEntity);
+        when(customerConverter.convertDtoToEntity(customerDTO)).thenReturn(customerModel);
         when(passwordEncoder.encode("12345")).thenReturn("54321");
-        when(customerRepository.save(customerEntity)).thenThrow(new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR));
+        when(customerRepository.save(customerModel)).thenThrow(new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR));
 
         assertThrows(ResponseStatusException.class, () -> customerService.save(customerDTO));
     }

@@ -2,7 +2,7 @@ package io.github.wemersonwalcley.fitness_tracker.service.customer;
 
 import io.github.wemersonwalcley.fitness_tracker.converter.CustomerConverter;
 import io.github.wemersonwalcley.fitness_tracker.dtos.CustomerDTO;
-import io.github.wemersonwalcley.fitness_tracker.entity.CustomerEntity;
+import io.github.wemersonwalcley.fitness_tracker.model.CustomerModel;
 import io.github.wemersonwalcley.fitness_tracker.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,19 +26,19 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerConverter customerConverter;
 
     public CustomerDTO getCustomerById(Long id) {
-        CustomerEntity customer = customerRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com o id: " + id));
+        CustomerModel customer = customerRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com o id: " + id));
         return customerConverter.convertEntityToDto(customer);
     }
 
     @Transactional
     public CustomerDTO save(CustomerDTO customerDTO) {
-        CustomerEntity customerEntity = customerConverter.convertDtoToEntity(customerDTO);
-        String passCrypt = passwordEncoder.encode(customerEntity.getAccountEntity().getCredentialEntity().getPassword());
-        customerEntity.getAccountEntity().getCredentialEntity().setPassword(passCrypt);
+        CustomerModel customerModel = customerConverter.convertDtoToEntity(customerDTO);
+        String passCrypt = passwordEncoder.encode(customerModel.getAccountModel().getCredentialModel().getPassword());
+        customerModel.getAccountModel().getCredentialModel().setPassword(passCrypt);
 
         try {
-            customerRepository.save(customerEntity);
-            return customerConverter.convertEntityToDto(customerEntity);
+            customerRepository.save(customerModel);
+            return customerConverter.convertEntityToDto(customerModel);
         } catch (ResponseStatusException e) {
             throw new ResponseStatusException(e.getStatus(), e.getMessage());
         }

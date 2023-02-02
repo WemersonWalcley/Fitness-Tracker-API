@@ -1,4 +1,4 @@
-package io.github.wemersonwalcley.fitness_tracker.entity;
+package io.github.wemersonwalcley.fitness_tracker.model;
 
 import lombok.*;
 
@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = "tb_customer")
-public class CustomerEntity implements Serializable {
+public class CustomerModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +24,6 @@ public class CustomerEntity implements Serializable {
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "tb_account_id")
     @MapsId
-    private AccountEntity accountEntity;
+    private AccountModel accountModel;
 
 }

@@ -2,7 +2,7 @@ package io.github.wemersonwalcley.fitness_tracker.service.credential;
 
 import io.github.wemersonwalcley.fitness_tracker.dtos.CredentialDTO;
 import io.github.wemersonwalcley.fitness_tracker.dtos.TokenDTO;
-import io.github.wemersonwalcley.fitness_tracker.entity.CredentialEntity;
+import io.github.wemersonwalcley.fitness_tracker.model.CredentialModel;
 import io.github.wemersonwalcley.fitness_tracker.repository.CredentialRepository;
 import io.github.wemersonwalcley.fitness_tracker.security.JwtEncoder;
 import lombok.AllArgsConstructor;
@@ -21,7 +21,7 @@ public class CredentialServiceImpl implements CredentialService {
     private final PasswordEncoder passwordEncoder;
 
     public ResponseEntity<TokenDTO> authenticate(CredentialDTO dto) {
-        CredentialEntity user = credentialRepository.findByUsername(dto.getUsername()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não encontrado."));
+        CredentialModel user = credentialRepository.findByUsername(dto.getUsername()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não encontrado."));
         boolean matches;
         matches = passwordEncoder.matches(dto.getPassword(), user.getPassword());
 

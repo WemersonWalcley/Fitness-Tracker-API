@@ -2,7 +2,7 @@ package io.github.wemersonwalcley.fitness_tracker.service;
 
 import io.github.wemersonwalcley.fitness_tracker.dtos.CredentialDTO;
 import io.github.wemersonwalcley.fitness_tracker.dtos.TokenDTO;
-import io.github.wemersonwalcley.fitness_tracker.entity.CredentialEntity;
+import io.github.wemersonwalcley.fitness_tracker.model.CredentialModel;
 import io.github.wemersonwalcley.fitness_tracker.repository.CredentialRepository;
 import io.github.wemersonwalcley.fitness_tracker.security.JwtEncoder;
 import io.github.wemersonwalcley.fitness_tracker.service.credential.CredentialServiceImpl;
@@ -49,7 +49,7 @@ class CredentialServiceImplTest {
         dto.setUsername("testuser");
         dto.setPassword("testpassword");
 
-        CredentialEntity entity = new CredentialEntity();
+        CredentialModel entity = new CredentialModel();
         entity.setUsername("testuser");
         entity.setPassword("hashedpassword");
 
@@ -72,10 +72,10 @@ class CredentialServiceImplTest {
         dto.setUsername("username");
         dto.setPassword("password");
 
-        CredentialEntity user = new CredentialEntity();
+        CredentialModel user = new CredentialModel();
         user.setPassword("hashed_password");
 
-        Optional<CredentialEntity> optionalUser = Optional.of(user);
+        Optional<CredentialModel> optionalUser = Optional.of(user);
 
         when(credentialRepository.findByUsername(dto.getUsername())).thenReturn(optionalUser);
         when(passwordEncoder.matches(dto.getPassword(), user.getPassword())).thenReturn(false);

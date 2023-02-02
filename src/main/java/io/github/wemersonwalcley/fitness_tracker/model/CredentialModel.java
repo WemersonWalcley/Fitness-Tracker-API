@@ -1,4 +1,4 @@
-package io.github.wemersonwalcley.fitness_tracker.entity;
+package io.github.wemersonwalcley.fitness_tracker.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.github.wemersonwalcley.fitness_tracker.enumeration.AccessLevelEnum;
@@ -19,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class CredentialEntity implements Serializable, GrantedAuthority, UserDetails {
+public class CredentialModel implements Serializable, GrantedAuthority, UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

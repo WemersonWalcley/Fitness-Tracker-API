@@ -1,6 +1,6 @@
 package io.github.wemersonwalcley.fitness_tracker.security;
 
-import io.github.wemersonwalcley.fitness_tracker.entity.CredentialEntity;
+import io.github.wemersonwalcley.fitness_tracker.model.CredentialModel;
 import io.github.wemersonwalcley.fitness_tracker.repository.CredentialRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -44,8 +44,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private void authenticateAccount(String token){
         Long accountId = jwtEncoder.getAccountId(token);
-        CredentialEntity credentialEntity = repository.findById(accountId).orElseThrow(() -> new UsernameNotFoundException("Credential not found by id"));
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(credentialEntity, null, credentialEntity.getAuthorities());
+        CredentialModel credentialModel = repository.findById(accountId).orElseThrow(() -> new UsernameNotFoundException("Credential not found by id"));
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(credentialModel, null, credentialModel.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
     }
 }

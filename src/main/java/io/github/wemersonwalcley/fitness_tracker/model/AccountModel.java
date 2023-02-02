@@ -1,4 +1,4 @@
-package io.github.wemersonwalcley.fitness_tracker.entity;
+package io.github.wemersonwalcley.fitness_tracker.model;
 
 import lombok.*;
 
@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountEntity implements Serializable {
+public class AccountModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +33,6 @@ public class AccountEntity implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
-    private CredentialEntity credentialEntity;
+    private CredentialModel credentialModel;
 
 }
