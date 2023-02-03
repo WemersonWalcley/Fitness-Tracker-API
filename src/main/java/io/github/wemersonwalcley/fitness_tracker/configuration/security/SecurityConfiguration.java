@@ -1,8 +1,6 @@
 package io.github.wemersonwalcley.fitness_tracker.configuration.security;
 
 import io.github.wemersonwalcley.fitness_tracker.repository.CredentialRepository;
-import io.github.wemersonwalcley.fitness_tracker.security.JwtAuthFilter;
-import io.github.wemersonwalcley.fitness_tracker.security.JwtEncoder;
 import io.github.wemersonwalcley.fitness_tracker.service.user.UserDetailServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

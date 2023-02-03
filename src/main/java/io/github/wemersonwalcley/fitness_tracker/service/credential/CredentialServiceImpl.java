@@ -4,7 +4,7 @@ import io.github.wemersonwalcley.fitness_tracker.dtos.CredentialDTO;
 import io.github.wemersonwalcley.fitness_tracker.dtos.TokenDTO;
 import io.github.wemersonwalcley.fitness_tracker.model.CredentialModel;
 import io.github.wemersonwalcley.fitness_tracker.repository.CredentialRepository;
-import io.github.wemersonwalcley.fitness_tracker.security.JwtEncoder;
+import io.github.wemersonwalcley.fitness_tracker.configuration.security.JwtEncoder;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

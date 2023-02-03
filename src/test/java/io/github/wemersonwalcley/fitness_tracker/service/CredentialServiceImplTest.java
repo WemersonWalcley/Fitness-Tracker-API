@@ -4,7 +4,7 @@ import io.github.wemersonwalcley.fitness_tracker.dtos.CredentialDTO;
 import io.github.wemersonwalcley.fitness_tracker.dtos.TokenDTO;
 import io.github.wemersonwalcley.fitness_tracker.model.CredentialModel;
 import io.github.wemersonwalcley.fitness_tracker.repository.CredentialRepository;
-import io.github.wemersonwalcley.fitness_tracker.security.JwtEncoder;
+import io.github.wemersonwalcley.fitness_tracker.configuration.security.JwtEncoder;
 import io.github.wemersonwalcley.fitness_tracker.service.credential.CredentialServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

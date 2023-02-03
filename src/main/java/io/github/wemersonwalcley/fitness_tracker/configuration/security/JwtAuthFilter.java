@@ -1,4 +1,4 @@
-package io.github.wemersonwalcley.fitness_tracker.security;
+package io.github.wemersonwalcley.fitness_tracker.configuration.security;
 
 import io.github.wemersonwalcley.fitness_tracker.model.CredentialModel;
 import io.github.wemersonwalcley.fitness_tracker.repository.CredentialRepository;
