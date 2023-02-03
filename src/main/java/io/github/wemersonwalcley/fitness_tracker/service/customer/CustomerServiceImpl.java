@@ -1,6 +1,6 @@
 package io.github.wemersonwalcley.fitness_tracker.service.customer;
 
-import io.github.wemersonwalcley.fitness_tracker.converter.CustomerConverter;
+import io.github.wemersonwalcley.fitness_tracker.mapper.CustomerMapper;
 import io.github.wemersonwalcley.fitness_tracker.dtos.CustomerDTO;
 import io.github.wemersonwalcley.fitness_tracker.model.CustomerModel;
 import io.github.wemersonwalcley.fitness_tracker.repository.CustomerRepository;
@@ -23,22 +23,22 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
 
     @Autowired
-    private CustomerConverter customerConverter;
+    private CustomerMapper customerMapper;
 
     public CustomerDTO getCustomerById(Long id) {
         CustomerModel customer = customerRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com o id: " + id));
-        return customerConverter.convertEntityToDto(customer);
+        return customerMapper.convertEntityToDto(customer);
     }
 
     @Transactional
     public CustomerDTO save(CustomerDTO customerDTO) {
-        CustomerModel customerModel = customerConverter.convertDtoToEntity(customerDTO);
+        CustomerModel customerModel = customerMapper.convertDtoToEntity(customerDTO);
         String passCrypt = passwordEncoder.encode(customerModel.getAccountModel().getCredentialModel().getPassword());
         customerModel.getAccountModel().getCredentialModel().setPassword(passCrypt);
 
         try {
             customerRepository.save(customerModel);
-            return customerConverter.convertEntityToDto(customerModel);
+            return customerMapper.convertEntityToDto(customerModel);
         } catch (ResponseStatusException e) {
             throw new ResponseStatusException(e.getStatus(), e.getMessage());
         }

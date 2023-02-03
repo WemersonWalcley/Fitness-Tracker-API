@@ -1,4 +1,4 @@
-package io.github.wemersonwalcley.fitness_tracker.converter;
+package io.github.wemersonwalcley.fitness_tracker.mapper;
 
 import io.github.wemersonwalcley.fitness_tracker.dtos.CustomerDTO;
 import io.github.wemersonwalcley.fitness_tracker.model.CustomerModel;
@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerConverter {
+public class CustomerMapper {
 
     public CustomerDTO convertEntityToDto(CustomerModel customerModel){
         ModelMapper modelMapper = new ModelMapper();

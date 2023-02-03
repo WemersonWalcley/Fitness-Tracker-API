@@ -1,6 +1,6 @@
 package io.github.wemersonwalcley.fitness_tracker.service;
 
-import io.github.wemersonwalcley.fitness_tracker.converter.CustomerConverter;
+import io.github.wemersonwalcley.fitness_tracker.mapper.CustomerMapper;
 import io.github.wemersonwalcley.fitness_tracker.dtos.CustomerDTO;
 import io.github.wemersonwalcley.fitness_tracker.model.AccountModel;
 import io.github.wemersonwalcley.fitness_tracker.model.CredentialModel;
@@ -26,7 +26,7 @@ class CustomerServiceImplTest {
     @Mock
     private CustomerRepository customerRepository;
     @Mock
-    private CustomerConverter customerConverter;
+    private CustomerMapper customerMapper;
     @Mock
     private BCryptPasswordEncoder passwordEncoder;
     private CustomerServiceImpl customerService;
@@ -35,7 +35,7 @@ class CustomerServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        customerService = new CustomerServiceImpl(passwordEncoder, customerRepository, customerConverter);
+        customerService = new CustomerServiceImpl(passwordEncoder, customerRepository, customerMapper);
         customerModel = new CustomerModel();
         customerModel.setId(1L);
         customerDTO = new CustomerDTO();
@@ -44,7 +44,7 @@ class CustomerServiceImplTest {
     @Test
     void getCustomerById_validId_returnsCustomerDTO() {
         when(customerRepository.findById(1L)).thenReturn(java.util.Optional.of(customerModel));
-        when(customerConverter.convertEntityToDto(customerModel)).thenReturn(customerDTO);
+        when(customerMapper.convertEntityToDto(customerModel)).thenReturn(customerDTO);
 
         CustomerDTO result = customerService.getCustomerById(1L);
 
@@ -61,10 +61,10 @@ class CustomerServiceImplTest {
         accountModel.setCredentialModel(credentialModel);
         customerModel.setAccountModel(accountModel);
 
-        when(customerConverter.convertDtoToEntity(customerDTO)).thenReturn(customerModel);
+        when(customerMapper.convertDtoToEntity(customerDTO)).thenReturn(customerModel);
         when(passwordEncoder.encode("12345")).thenReturn("54321");
         when(customerRepository.save(customerModel)).thenReturn(customerModel);
-        when(customerConverter.convertEntityToDto(customerModel)).thenReturn(customerDTO);
+        when(customerMapper.convertEntityToDto(customerModel)).thenReturn(customerDTO);
 
         CustomerDTO savedCustomerDTO = customerService.save(customerDTO);
 
@@ -81,7 +81,7 @@ class CustomerServiceImplTest {
         accountModel.setCredentialModel(credentialModel);
         customerModel.setAccountModel(accountModel);
 
-        when(customerConverter.convertDtoToEntity(customerDTO)).thenReturn(customerModel);
+        when(customerMapper.convertDtoToEntity(customerDTO)).thenReturn(customerModel);
         when(passwordEncoder.encode("12345")).thenReturn("54321");
         when(customerRepository.save(customerModel)).thenThrow(new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR));
 
