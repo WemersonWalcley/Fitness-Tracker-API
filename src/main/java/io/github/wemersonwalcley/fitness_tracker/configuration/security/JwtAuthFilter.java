@@ -43,8 +43,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     }
 
     private void authenticateAccount(String token){
-        Long accountId = jwtEncoder.getAccountId(token);
-        CredentialModel credentialModel = repository.findById(accountId).orElseThrow(() -> new UsernameNotFoundException("Credential not found by id"));
+        String credentialUsername = jwtEncoder.getAccountByUser(token);
+        CredentialModel credentialModel = repository.findByUsername(credentialUsername).orElseThrow(() -> new UsernameNotFoundException("Credential not found by id"));
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(credentialModel, null, credentialModel.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
     }

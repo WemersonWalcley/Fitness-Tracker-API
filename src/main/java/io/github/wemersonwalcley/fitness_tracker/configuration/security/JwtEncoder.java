@@ -6,6 +6,7 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -22,7 +23,8 @@ public class JwtEncoder {
     @Value("${security.jwt.signature}")
     private String signatureKey;
 
-    public String generateToken(CredentialModel credentialModel) {
+    public String generateToken(Authentication authentication) {
+        CredentialModel credentialModel = (CredentialModel) authentication.getPrincipal();
         long expString = Long.parseLong(expiration);
         LocalDateTime dateHourExpiration = LocalDateTime.now().plusMinutes(expString);
         Instant instant = dateHourExpiration.atZone(ZoneId.systemDefault()).toInstant();
@@ -48,16 +50,14 @@ public class JwtEncoder {
             Claims claims = getClaims(token);
             Date expirationDate = claims.getExpiration();
             LocalDateTime date = expirationDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-            return LocalDateTime.now().isAfter(date);
+            return LocalDateTime.now().isBefore(date);
         } catch (Exception e) {
             return false;
         }
     }
 
-    public Long getAccountId(String token) {
-        Claims claims = Jwts.parser().setSigningKey(this.signatureKey).parseClaimsJws(token).getBody();
-        String id = claims.get("id", String.class);
-        return Long.parseLong(id);
+    public String getAccountByUser(String token) throws ExpiredJwtException{
+        return (String) getClaims(token).getSubject();
     }
 
 }
