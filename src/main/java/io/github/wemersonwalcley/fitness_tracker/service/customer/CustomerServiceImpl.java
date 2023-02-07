@@ -6,11 +6,15 @@ import io.github.wemersonwalcley.fitness_tracker.model.CustomerModel;
 import io.github.wemersonwalcley.fitness_tracker.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -26,6 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerMapper customerMapper;
 
     public CustomerDTO getCustomerById(Long id) {
+        Optional<Authentication> auth = Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication());
         CustomerModel customer = customerRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com o id: " + id));
         return customerMapper.convertEntityToDto(customer);
     }
