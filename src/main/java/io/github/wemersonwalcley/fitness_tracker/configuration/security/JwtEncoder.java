@@ -34,6 +34,7 @@ public class JwtEncoder {
                 .setSubject(credentialModel.getUsername())
                 .setExpiration(date)
                 .signWith(SignatureAlgorithm.HS256, signatureKey)
+                .claim("id", credentialModel.getId().toString())
                 .compact();
     }
 
@@ -56,8 +57,10 @@ public class JwtEncoder {
         }
     }
 
-    public String getAccountByUser(String token) throws ExpiredJwtException{
-        return (String) getClaims(token).getSubject();
+    public Long extractCredentialId(String token) throws ExpiredJwtException{
+        Claims claims = Jwts.parser().setSigningKey(this.signatureKey).parseClaimsJws(token).getBody();
+        String id = claims.get("id", String.class);
+        return Long.parseLong(id);
     }
 
 }
